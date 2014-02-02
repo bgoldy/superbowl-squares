@@ -116,6 +116,7 @@
         </tbody>
       </table><!-- /#quarters -->
     </footer>
+      <input name="Submit" type="submit" value="GenRowCol" onClick="JavaScript:handleClickGenRowCol()"/>
 
   </div><!-- /#main-wrapper -->
 
@@ -131,13 +132,13 @@
   for (i=1; i<= GRID_SIZE; i++) {
     td = [];
     for (j = 1;j<=GRID_SIZE; j++){
-      td.push("<td class='grid-$i-$ii cell' data-obj-path='game.grid.cell.$i.$ii'></td>");
+      td.push("<td class='grid-" + i + "-" + j + " cell' data-obj-path='game.grid.cell." + i + "." + j + "'></td>");
     }
-    tr.push("<tr class='row-$i'>\n\t<th class='team-away' data-obj-path='game.grid.header.$i.0'></th>\n\t" + td.join("\n\t") + '</tr>');
+    tr.push("<tr class='row-" + i + "'>\n\t<th class='team-away' data-obj-path='game.grid.header." + i + ".0'></th>\n\t" + td.join("\n\t") + '</tr>');
   }
 
   for ($i = 0; $i <= GRID_SIZE; $i++) {
-    $("#stuff").append( "<th class='team-home' data-obj-path='game.grid.header.0.$i'></th>");
+    $("#stuff").append( "<th class='team-home' data-obj-path='game.grid.header.0." + $i + "'></th>");
   }
 
   $("#stuff2").html(tr.join("\n"));
@@ -145,5 +146,67 @@
 
 </script>
 <script type="text/javascript" src="scripts/global.js"></script>
+<script type="text/javascript">
+  
+  function makeRows() {
+      console.log("makerows")
+      var scores = getNumbers();
+    for (i=0;i<GRID_SIZE;i++){
+      
+      var cur = scores.pop();
+      console.log("Row:" + cur)
+      // write code to jam cur into the DOM header - this is all that is needed and it's done!
+
+
+    }
+    var scores = getNumbers();
+    for (i=0;i<GRID_SIZE;i++){
+      
+      var cur = scores.pop();
+      console.log("Col:" + cur) // replace with code to put into DOM
+      // write code to jam cur into the DOM header - this is all that is needed and it's done!
+
+
+    }
+
+  }
+
+  function getNumbers() {
+    var scores = [0,1,2,3,4,5,6,7,8,9];
+    return(shuffle(scores));
+  }
+
+  function shuffle(array) {
+    var currentIndex = array.length
+      , temporaryValue
+      , randomIndex
+      ;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+  function handleClickGenRowCol()
+  {
+    makeRows();
+    
+  }
+
+
+
+</script>
+
 </body>
 </html>

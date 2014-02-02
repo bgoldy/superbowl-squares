@@ -173,7 +173,12 @@
 		console.log(gameWrapper);
 	}
 
-	if (!gameWrapper.games) {
+  
+
+
+
+
+  if (!gameWrapper.games) {
 		gameWrapper.games = [gameWrapper.default_game];
 		saveGames();
 	}
